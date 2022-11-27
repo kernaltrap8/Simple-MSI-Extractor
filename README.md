@@ -11,4 +11,6 @@ The output select dialog opens behind Powershell, I cant fix this without writin
 3) When it runs, you should see a Explorer window pop-up, select the MSI from there.
 4) Click OK, and then select a output directory (use Create New Folder if you want it to be more organized when extracting)
 
+Extractor is now in exe format, use this instead.
+
 If you have any issues make a Issue on the repo, or contact me on Discord: JamesIsWack#8330
