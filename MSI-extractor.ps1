@@ -2,6 +2,8 @@ Add-Type -AssemblyName System.Windows.Forms
 
 #Use Windows Forms to open a file select dialog
 
+Write-Output ("What MSI do you want me to extract?")
+
 $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{ 
     InitialDirectory = [Environment]::GetFolderPath('Desktop') 
     Filter = 'Windows Packages (*.msi)|*.msi'
@@ -11,15 +13,21 @@ $Out = $FileBrowser.ShowDialog() #Display the dialog
 
 #Select output directory
 
+Write-Output ("What folder do you want me to extract the content to?")
+
 $FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
     Description = 'Output'
 }
 
 $Out = $FolderBrowser.ShowDialog() #Display the dialog
 
+Write-Output ("Extracting...")
+
 $FolderBrowser.SelectedPath #Variable stuff
 
 msiexec /a $FileBrowser.FileName /qb TARGETDIR=$($FolderBrowser.SelectedPath) # This uses the built in Windows tool to extract the MSI
+
+Write-Output ("Done! Go to the path you provided to see the contents.")
 
 #A helpful message
 
