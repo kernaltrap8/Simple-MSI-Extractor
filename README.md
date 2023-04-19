@@ -1,16 +1,15 @@
-# Simple-MSI-Extractor
+![msi-extractor_banner](https://user-images.githubusercontent.com/94473358/233145486-6b7ba222-9ae8-4bb7-a0b6-13f11c23fb94.png)
+
+
+# msi-extractor
 A very simple PS1 script that extracts MSI's.
 
 # Notes
 The output select dialog opens behind Powershell, I cant fix this without writing my own GUI, so this is the best you'll get.
 
 # How to run
+1) Download the `msi-extractor.exe` from the Releases tab, and run the file. Follow the prompts.
+If you have any issues make a Issue on this repo.
 
-1) Download the MSI-extractor.ps1 file from the Releases tab. 
-2) Right click on the file in Explorer, and select Run with Powershell. 
-3) When it runs, you should see a Explorer window pop-up, select the MSI from there.
-4) Click OK, and then select a output directory (use Create New Folder if you want it to be more organized when extracting)
-
-Extractor is now in exe format, use this instead.
-
-If you have any issues make a Issue on the repo, or contact me on Discord: JamesIsWack#8330
+# Dislaimer
+This script does not work on all MSIs. Notibly VNC Server. Not really sure why to be honest. 
