@@ -20,7 +20,7 @@ $Out = $FileBrowser.ShowDialog() #Display the dialog
 Write-Output ("What folder do you want me to extract the content to?")
 
 $FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
-    Description = 'Output'
+    Description = 'Select the directory you would like to extract to. Hint: use Make New Folder to organize the install.'
 }
 
 $Out = $FolderBrowser.ShowDialog() #Display the dialog
@@ -29,7 +29,7 @@ Write-Output ("Extracting...")
 
 $FolderBrowser.SelectedPath #Variable stuff
 
-msiexec /a $FileBrowser.FileName /qb TARGETDIR=$($FolderBrowser.SelectedPath) # This uses the built in Windows tool to extract the MSI
+Start-Process msiexec.exe /a $FileBrowser.FileName /qb TARGETDIR=$($FolderBrowser.SelectedPath) # This uses the built in Windows tool to extract the MSI
 
 Write-Output ("Done! Go to the path you provided to see the contents.")
 
