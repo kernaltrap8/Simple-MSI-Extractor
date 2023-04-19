@@ -1,3 +1,7 @@
+# Simple MSI Extractor // Source file
+# Written by JamesIsWack // kernaltrap
+# Version 1.0.2.1
+
 Add-Type -AssemblyName System.Windows.Forms
 
 #Use Windows Forms to open a file select dialog
