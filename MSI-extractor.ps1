@@ -1,12 +1,12 @@
 # ==================================== #
 # Simple MSI Extractor // Source file  #
 # kernaltrap                           #
-# Version 1.2                          #
+# Version 1.3                          #
 # ==================================== #
 
 Add-Type -AssemblyName System.Windows.Forms
 
-# Use Windows Forms to open a file select dialog
+$Shell = New-Object -ComObject "WScript.Shell" # Setup for Wscript.Shell usage in Powershell
 
 Write-Output ("What MSI do you want me to extract?")
 
@@ -25,13 +25,7 @@ $FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @
     Description = 'Select the directory you would like to extract to. Hint: use Make New Folder to organize the install.'
 }
 
-$FolderBrowser.ShowDialog() # Display the dialog
-
-Write-Output ("Extracting...")
-
-$FolderBrowser.SelectedPath
-
-msiexec.exe /a  $FileBrowser.FileName TARGETDIR="$($FolderBrowser.SelectedPath)" /qb
+$FolderBrowser.ShowDialog()
 
 # ===================================================================== #
 # msiexec.exe // Calls the Win32 MSI program                            #
@@ -40,10 +34,15 @@ msiexec.exe /a  $FileBrowser.FileName TARGETDIR="$($FolderBrowser.SelectedPath)"
 # TARGETDIR // Use directory taken from FolderBrowser.SelectedPath      #
 # ===================================================================== #
 
-Write-Output ("Done! Go to the path you provided to see the contents.")
+msiexec.exe /a  $FileBrowser.FileName TARGETDIR="$($FolderBrowser.SelectedPath)" /qb
 
-#A helpful message
+Get-Process | ?{$_.path -eq $path} | Out-Null # Setup for Get-Process, this has a lot of output so it is directed to Out-Null (same as >$null)
 
-$Shell = New-Object -ComObject "WScript.Shell"
+# If statement to check if msiexec is running, if not, end the program and display the Shell popup
 
-$Shell.Popup("MSI extracted.", 0, "Thank you for using MSI Extractor", 0)
+if(Get-Process | ?{$_.path -eq "C:\Windows\System32\msiexec.exe"}){
+  Write-Output ("Extracting...")
+}else{
+  Write-Output ("Done! Go to the path you provided to see the contents.")
+  $Shell.Popup("MSI extracted.", 0, "Thank you for using MSI Extractor", 0)
+}
