@@ -36,13 +36,13 @@ $FolderBrowser.ShowDialog()
 
 msiexec.exe /a  $FileBrowser.FileName TARGETDIR="$($FolderBrowser.SelectedPath)" /qb
 
-Get-Process | ?{$_.path -eq $path} | Out-Null # Setup for Get-Process, this has a lot of output so it is directed to Out-Null (same as >$null)
+Get-Process | Where-Object{$_.path -eq $path} | Out-Null # Setup for Get-Process, this has a lot of output so it is directed to Out-Null (same as >$null)
 
 # If statement to check if msiexec is running, if not, end the program and display the Shell popup
 
-if(Get-Process | ?{$_.path -eq "C:\Windows\System32\msiexec.exe"}){
+if(Get-Process | Where-Object{$_.path -eq "C:\Windows\System32\msiexec.exe"}){
   Write-Output ("Extracting...")
-}else{
+} else {
   Write-Output ("Done! Go to the path you provided to see the contents.")
   $Shell.Popup("MSI extracted.", 0, "Thank you for using MSI Extractor", 0)
 }
