@@ -1,8 +1,9 @@
-# ==================================== #
-# Simple MSI Extractor // Source file  #
-# kernaltrap                           #
-# Version 1.3                          #
-# ==================================== #
+# ====================================== #
+# Simple MSI Extractor // Source file    #
+# kernaltrap                             #
+# Version 1.3                            #
+# This code is licensed under GNU GPL v3 #
+# ====================================== #
 
 Add-Type -AssemblyName System.Windows.Forms
 
