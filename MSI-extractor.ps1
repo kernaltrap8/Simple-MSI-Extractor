@@ -5,6 +5,12 @@
 # This code is licensed under GNU GPL v3 #
 # ====================================== #
 
+$version = "1.3r2"
+if ($MyInvocation.UnboundArguments.Where({$_ -in '-v'}).Count -ge 1) {
+  Write-Host "Simple MSI Extractor`nVersion $version`nLicensed under GNU GPL v3"
+  exit
+} else { }
+
 Add-Type -AssemblyName System.Windows.Forms
 
 $Shell = New-Object -ComObject "WScript.Shell" # Setup for Wscript.Shell usage in Powershell
